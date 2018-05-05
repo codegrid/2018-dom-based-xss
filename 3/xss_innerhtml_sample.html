@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>XSS test</title>
+<p>※注意: これは脆弱性を学習するためのサンプルです。このHTMLには脆弱性があり、不用意にサーバ上に配置すると、このファイルが置かれたドメイン全体の安全性が脅かされる危険性があります。</p>
+<form><input id="q" name="q" value="sample"/><button>検索</button></form>
+<p id="result"></p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+        const queries = {};
+        location.search.slice(1).split('&').forEach((s) => {
+                const keyvalue = s.split('=');
+                queries[keyvalue[0]] = decodeURIComponent(keyvalue[1].replace(/\+/g,' '));
+        });
+        if(queries['q']){
+                $('#q').val(queries['q']);
+                document.getElementById('result').innerHTML = queries['q'] + ' の検索結果';
+        }
+</script>
