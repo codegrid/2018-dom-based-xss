@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+<html lang="ja">
+<head>
 <meta charset="UTF-8">
 <title>XSS test</title>
+</head>
+<body>
 <p>※注意: これは脆弱性を学習するためのサンプルです。このHTMLには脆弱性があり、不用意にサーバ上に配置すると、このファイルが置かれたドメイン全体の安全性が脅かされる危険性があります。</p>
 <form><input id="q" name="q" value="sample"/><button>検索</button></form>
 <p id="result"></p>
@@ -16,3 +20,5 @@
                 $('#result').html(queries['q'] + ' の検索結果');
         }
 </script>
+</body>
+</html>
